@@ -3,7 +3,9 @@ def main():
     text = get_text(book)
     word_count = get_word_count(text)
     print(f"This document has {word_count} words")
-    #count_characters(text)
+    char_count = count_characters(text)
+    print(f"this is the breakdown of letters in the document: {char_count}")
+
 
 
     
@@ -19,15 +21,16 @@ def get_text(path):
 
 
 def count_characters(text):
-    words = text.split()
-    lowered_string = ""
-    for word in words:
-        lowered_word = word.lower()
-        lowered_string += lowered_word
-    print(lowered_string)
-
-    
-
+    letter_counts = {}
+    for char in text.lower():
+        if char.isalpha():
+            if char not in letter_counts:
+                letter_counts[char] = 1
+            else:
+                letter_counts[char] +=1
+            pass
+    sorted_dict = {k: letter_counts[k] for k in sorted(letter_counts)}
+    return sorted_dict
 
 
 main()
